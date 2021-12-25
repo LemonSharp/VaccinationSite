@@ -14,6 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(typeof(ISiteAppService));
+builder.Services.AddHealthChecks();
 
 builder.Services.AddDbContext<VaccinationSiteContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("VaccinationSite")));
@@ -30,5 +31,5 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapControllers();
-
+app.MapHealthChecks("/health");
 app.Run();

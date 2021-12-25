@@ -23,7 +23,7 @@ public class
             .HasForeignKey(b => b.SiteId);
         
         var appointmentRangesNavigation = builder.Metadata.FindNavigation(nameof(Site.AppointmentRanges));
-        
+        ArgumentNullException.ThrowIfNull(appointmentRangesNavigation);
         appointmentRangesNavigation.SetPropertyAccessMode(PropertyAccessMode.Field);
     }
 }

@@ -1,0 +1,48 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "vaccination-site"
+  namespace: default
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: "vaccination-site"
+  template:
+    metadata:
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "vaccination-site"
+        dapr.io/app-port: "80"       
+      labels:
+        app: "vaccination-site"
+    spec:
+      imagePullSecrets:
+        - name: containerregistryauth
+      containers:
+        - name: "vaccination-site"
+          image: "lemonsharp.azurecr.io/vaccination-site"
+          ports:
+          - name: http
+            containerPort: 80
+            protocol: TCP
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "20m"
+            limits:
+              memory: "256Mi"
+              cpu: "100m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 30

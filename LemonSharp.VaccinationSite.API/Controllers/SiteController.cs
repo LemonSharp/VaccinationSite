@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace LemonSharp.VaccinationSite.API.Controllers;
 
 [Route("/api/[controller]/[action]")]
-public class SitController : Controller
+public class SiteController : Controller
 {
     private readonly ISiteAppService _siteAppService;
 
-    public SitController(ISiteAppService siteAppService)
+    public SiteController(ISiteAppService siteAppService)
     {
         _siteAppService = siteAppService;
     }
