@@ -2,6 +2,7 @@
 using LemonSharp.VaccinationSite.Domain.AggregatesModel.VaccinationSiteAggregate;
 using LemonSharp.VaccinationSite.Infrastructure;
 using LemonSharp.VaccinationSite.Infrastructure.Repositories;
+using LemonSharp.VaccinationSite.Query;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +21,8 @@ builder.Services.AddDbContext<VaccinationSiteContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("VaccinationSite")));
 builder.Services.AddScoped<ISiteAppService, SiteAppService>();
 builder.Services.AddScoped<ISiteRepository, SiteRepository>();
+
+builder.Services.AddSingleton<ISiteQueries, SiteQueries>();
 
 var app = builder.Build();
 

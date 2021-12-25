@@ -1,5 +1,7 @@
 ﻿using LemonSharp.VaccinationSite.Application.AppServices;
 using LemonSharp.VaccinationSite.Application.DTOs;
+using LemonSharp.VaccinationSite.Query;
+using LemonSharp.VaccinationSite.Query.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LemonSharp.VaccinationSite.API.Controllers;
@@ -8,10 +10,12 @@ namespace LemonSharp.VaccinationSite.API.Controllers;
 public class SiteController : Controller
 {
     private readonly ISiteAppService _siteAppService;
+    private readonly ISiteQueries _siteQueries;
 
-    public SiteController(ISiteAppService siteAppService)
+    public SiteController(ISiteAppService siteAppService, ISiteQueries siteQueries)
     {
         _siteAppService = siteAppService;
+        _siteQueries = siteQueries;
     }
 
     [HttpPost]
@@ -30,5 +34,17 @@ public class SiteController : Controller
     public Task<BusinessResult> CancelAppointment([FromBody] CancelAppointmentDTO request)
     {
         return _siteAppService.CancelAppointment(request);
+    }
+
+    [HttpGet]
+    public Task<SiteListDTO[]> List([FromQuery]SiteListRequestDTO request)
+    {
+        return _siteQueries.GetSiteList(request);
+    }
+
+    [HttpGet]
+    public Task<SiteCapacityResponseDTO[]> SiteCapacityInfo([FromQuery] SiteCapacityRequestDTO request)
+    {
+        return _siteQueries.GetSiteCapacityInfo(request);
     }
 }
