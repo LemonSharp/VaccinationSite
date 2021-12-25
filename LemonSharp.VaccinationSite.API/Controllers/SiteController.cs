@@ -19,4 +19,16 @@ public class SiteController : Controller
     {
         return _siteAppService.AddSiteAsync(request);
     }
+    
+    [HttpPost]
+    public Task<BusinessResult> CreateAppointment([FromBody] CreateAppointmentDTO request)
+    {
+        return _siteAppService.CreateAppointment(request);
+    }
+    
+    [HttpPost]
+    public Task<BusinessResult> CancelAppointment([FromBody] CancelAppointmentDTO request)
+    {
+        return _siteAppService.CancelAppointment(request);
+    }
 }

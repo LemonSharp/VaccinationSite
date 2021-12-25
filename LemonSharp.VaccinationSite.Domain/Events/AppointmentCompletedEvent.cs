@@ -4,7 +4,7 @@ using MediatR;
 namespace LemonSharp.VaccinationSite.Domain.Events;
 
 public record AppointmentCompletedEvent(
-    long UserId,
+    Guid UserId,
     DateTime AppointmentDate,
     string AddressName,
     double AddressLongitude,

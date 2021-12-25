@@ -7,4 +7,5 @@ public interface ISiteRepository : IRepository<Site>
     Site Add(Site site);
 
     Task<Site> GetAsync(Guid id);
+    void Update(Site site);
 }
