@@ -2,11 +2,11 @@
 
 public enum BusinessCode
 {
-     Failed = 0,
+    Failed = 0,
 
-     Success = 1,
+    Success = 1,
 
-     AppointmentDateExpired = 2,
+    AppointmentDateExpired = 2,
 
-     AppointmentFull = 3,
+    AppointmentFull = 3,
 }

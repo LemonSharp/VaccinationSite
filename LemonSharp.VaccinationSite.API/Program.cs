@@ -1,4 +1,4 @@
-using LemonSharp.VaccinationSite.Application.AppServices;
+﻿using LemonSharp.VaccinationSite.Application.AppServices;
 using LemonSharp.VaccinationSite.Domain.AggregatesModel.VaccinationSiteAggregate;
 using LemonSharp.VaccinationSite.Infrastructure;
 using LemonSharp.VaccinationSite.Infrastructure.Repositories;

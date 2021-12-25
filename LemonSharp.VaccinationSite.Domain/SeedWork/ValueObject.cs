@@ -37,7 +37,7 @@
              .Aggregate((x, y) => x ^ y);
         }
 
-        public ValueObject GetCopy()
+        public ValueObject? GetCopy()
         {
             return this.MemberwiseClone() as ValueObject;
         }

@@ -33,7 +33,7 @@ public class Site : Entity, IAggregateRoot
     {
     }
 
-    public Site(string siteName, string addressName,double addressLongitude, double addressLatitude, int capacity)
+    public Site(string siteName, string addressName, double addressLongitude, double addressLatitude, int capacity)
     {
         SiteName = siteName;
         AddressName = addressName;
@@ -60,7 +60,7 @@ public class Site : Entity, IAggregateRoot
 
         appointmentRange.CreateAppointment();
 
-        AddDomainEvent(new AppointmentCompletedEvent(userId, appointmentRange.Date, AddressName,AddressLongitude, AddressLatitude));
+        AddDomainEvent(new AppointmentCompletedEvent(userId, appointmentRange.Date, AddressName, AddressLongitude, AddressLatitude));
     }
 
     public void CancelAppointment(long userId, DateTime appointmentDate)

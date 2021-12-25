@@ -22,9 +22,9 @@ public class SiteAppService : ISiteAppService
             request.Capacity);
         _siteRepository.Add(site);
         await _siteRepository.UnitOfWork.SaveEntitiesAsync();
-        
+
         return new BusinessResult(BusinessCode.Success, "新增接种点成功");
     }
-    
+
     // TODO create app
 }

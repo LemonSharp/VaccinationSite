@@ -3,7 +3,7 @@
 public class VaccinationSiteDomainException : Exception
 {
     public BusinessCode Code { get; }
-    
+
     public VaccinationSiteDomainException()
     { }
 

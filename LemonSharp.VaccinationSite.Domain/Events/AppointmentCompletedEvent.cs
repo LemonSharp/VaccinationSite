@@ -7,6 +7,6 @@ public record AppointmentCompletedEvent(
     long UserId,
     DateTime AppointmentDate,
     string AddressName,
-    double AddressLongitude, 
+    double AddressLongitude,
     double AddressLatitude
 ) : INotification;

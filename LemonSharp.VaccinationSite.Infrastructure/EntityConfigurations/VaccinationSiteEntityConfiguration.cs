@@ -17,11 +17,11 @@ public class
 
         builder.Property(x => x.Id)
             .ValueGeneratedOnAdd();
-        
+
         builder.HasMany(b => b.AppointmentRanges)
             .WithOne()
             .HasForeignKey(b => b.SiteId);
-        
+
         var appointmentRangesNavigation = builder.Metadata.FindNavigation(nameof(Site.AppointmentRanges));
         ArgumentNullException.ThrowIfNull(appointmentRangesNavigation);
         appointmentRangesNavigation.SetPropertyAccessMode(PropertyAccessMode.Field);

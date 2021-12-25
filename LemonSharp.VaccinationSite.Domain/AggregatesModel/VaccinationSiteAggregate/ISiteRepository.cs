@@ -5,6 +5,6 @@ namespace LemonSharp.VaccinationSite.Domain.AggregatesModel.VaccinationSiteAggre
 public interface ISiteRepository : IRepository<Site>
 {
     Site Add(Site site);
-    
+
     Task<Site> GetAsync(int id);
 }

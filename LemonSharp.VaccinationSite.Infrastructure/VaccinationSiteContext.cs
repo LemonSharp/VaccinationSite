@@ -9,7 +9,7 @@ namespace LemonSharp.VaccinationSite.Infrastructure;
 public class VaccinationSiteContext : DbContext, IUnitOfWork
 {
     public DbSet<Domain.AggregatesModel.VaccinationSiteAggregate.Site> Sites { get; set; } = null!;
-    
+
     public VaccinationSiteContext(DbContextOptions<VaccinationSiteContext> options) : base(options)
     {
     }
