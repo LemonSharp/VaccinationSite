@@ -20,7 +20,7 @@ namespace LemonSharp.VaccinationSite.Domain.SeedWork
         }
 
         private List<INotification>? _domainEvents;
-        public IReadOnlyCollection<INotification> DomainEvents => _domainEvents?.AsReadOnly();
+        public IReadOnlyCollection<INotification>? DomainEvents => _domainEvents?.AsReadOnly();
 
         public void AddDomainEvent(INotification eventItem)
         {
