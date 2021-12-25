@@ -20,7 +20,7 @@ public class SiteRepository : ISiteRepository
         return site;
     }
 
-    public Task<Site> GetAsync(int id)
+    public Task<Site> GetAsync(Guid id)
     {
         var site = _context.Sites
             .Include(s => s.AppointmentRanges)

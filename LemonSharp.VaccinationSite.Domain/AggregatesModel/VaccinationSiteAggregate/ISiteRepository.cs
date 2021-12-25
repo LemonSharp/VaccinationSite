@@ -6,5 +6,5 @@ public interface ISiteRepository : IRepository<Site>
 {
     Site Add(Site site);
 
-    Task<Site> GetAsync(int id);
+    Task<Site> GetAsync(Guid id);
 }

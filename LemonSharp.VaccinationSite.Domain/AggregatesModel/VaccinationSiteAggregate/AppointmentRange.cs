@@ -4,7 +4,7 @@ namespace LemonSharp.VaccinationSite.Domain.AggregatesModel.VaccinationSiteAggre
 
 public class AppointmentRange : Entity
 {
-    public long SiteId { get; private set; }
+    public Guid SiteId { get; private set; }
     public DateTime Date { get; private set; }
 
     public int Capacity { get; private set; }
