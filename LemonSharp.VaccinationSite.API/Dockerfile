@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 WORKDIR /app
 
-COPY LemonSharp.VaccinationSite.Infrastruture/LemonSharp.VaccinationSite.Infrastruture.csproj LemonSharp.VaccinationSite.Infrastruture/
+COPY LemonSharp.VaccinationSite.Infrastructure/LemonSharp.VaccinationSite.Infrastructure.csproj LemonSharp.VaccinationSite.Infrastructure/
 COPY LemonSharp.VaccinationSite.Domain/LemonSharp.VaccinationSite.Domain.csproj LemonSharp.VaccinationSite.Domain/
 COPY LemonSharp.VaccinationSite.Application/LemonSharp.VaccinationSite.Application.csproj LemonSharp.VaccinationSite.Application/
 COPY LemonSharp.VaccinationSite.Query/LemonSharp.VaccinationSite.Query.csproj LemonSharp.VaccinationSite.Query/
