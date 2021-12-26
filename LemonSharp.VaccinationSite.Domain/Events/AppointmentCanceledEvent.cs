@@ -1,8 +1,6 @@
-﻿using MediatR;
-
-namespace LemonSharp.VaccinationSite.Domain.Events;
+﻿namespace LemonSharp.VaccinationSite.Domain.Events;
 
 public record AppointmentCanceledEvent(
     Guid UserId,
     DateTime AppointmentDate
-) : INotification;
+) : IDomainEvent;

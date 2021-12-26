@@ -1,7 +1,4 @@
-﻿using LemonSharp.VaccinationSite.Domain.AggregatesModel.VaccinationSiteAggregate;
-using MediatR;
-
-namespace LemonSharp.VaccinationSite.Domain.Events;
+﻿namespace LemonSharp.VaccinationSite.Domain.Events;
 
 public record AppointmentCompletedEvent(
     Guid UserId,
@@ -9,4 +6,4 @@ public record AppointmentCompletedEvent(
     string AddressName,
     double AddressLongitude,
     double AddressLatitude
-) : INotification;
+) : IDomainEvent;

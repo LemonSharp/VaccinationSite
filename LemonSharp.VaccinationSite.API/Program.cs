@@ -3,7 +3,6 @@ using LemonSharp.VaccinationSite.Domain.AggregatesModel.VaccinationSiteAggregate
 using LemonSharp.VaccinationSite.Infrastructure;
 using LemonSharp.VaccinationSite.Infrastructure.Repositories;
 using LemonSharp.VaccinationSite.Query;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +13,6 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddMediatR(typeof(ISiteAppService));
 builder.Services.AddHealthChecks();
 
 builder.Services.AddDbContext<VaccinationSiteContext>(
