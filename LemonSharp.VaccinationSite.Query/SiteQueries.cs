@@ -13,7 +13,7 @@ public class SiteQueries: ISiteQueries
         _connStr = configuration.GetConnectionString("VaccinationSite");
     }
     
-    public async Task<SiteListDTO[]> GetSiteList(SiteListRequestDTO request)
+    public async Task<SiteListDTO[]> GetSiteListAsync(SiteListRequestDTO request)
     {
         var whereFilter = string.Empty;
         if (!string.IsNullOrEmpty(request.Keyword))
@@ -37,17 +37,17 @@ ORDER BY ((AddressLatitude-@AddressLatitude)*(AddressLatitude-@AddressLatitude) 
         return (await conn.QueryAsync<SiteListDTO>(sql, request)).ToArray();
     }
     
-    public async Task<SiteListDTO> GetSiteInfoById(Guid siteId)
+    public async Task<SiteListDTO> GetSiteInfoByIdAsync(Guid siteId)
     {
         const string sql = "SELECT Id AS SiteId, * FROM [dbo].[VaccinationSites] WHERE Id = @siteId";
         await using var conn = new SqlConnection(_connStr);
         return await conn.QueryFirstOrDefaultAsync<SiteListDTO>(sql, new { siteId });
     }
 
-    public async Task<SiteCapacityResponseDTO[]> GetSiteCapacityInfo(SiteCapacityRequestDTO request)
+    public async Task<SiteCapacityResponseDTO[]> GetSiteCapacityInfoAsync(SiteCapacityRequestDTO request)
     {
         var sql = @"
-SELECT [Date], [Capacity], [Available] FROM [dbo].[AppointmentRange]
+SELECT [Date], [Capacity], [Available] FROM dto.AppointmentRanges
 WHERE SiteId = @SiteId AND [Date] >= @BeginDate AND [Date] <= @EndDate";
         await using var conn = new SqlConnection(_connStr);
         return (await conn.QueryAsync<SiteCapacityResponseDTO>(sql, request)).ToArray();
