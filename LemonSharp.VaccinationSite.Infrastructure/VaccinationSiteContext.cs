@@ -1,4 +1,5 @@
-﻿using LemonSharp.VaccinationSite.Domain.SeedWork;
+﻿using Dapr.Client;
+using LemonSharp.VaccinationSite.Domain.SeedWork;
 using LemonSharp.VaccinationSite.Infrastructure.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,14 +7,16 @@ namespace LemonSharp.VaccinationSite.Infrastructure;
 
 public class VaccinationSiteContext : DbContext, IUnitOfWork
 {
+    private readonly DaprClient _daprClient;
     public DbSet<Domain.AggregatesModel.VaccinationSiteAggregate.Site> Sites { get; set; }
 
     // protected override void OnConfiguring(DbContextOptionsBuilder options)
     //     => options.UseSqlServer(
     //         "Server=tcp:lemon-sharp.database.windows.net,1433;Initial Catalog=reservation;Persist Security Info=False;User ID=lemon;Password=Test@123456;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;database=VaccinationSite");
 
-    public VaccinationSiteContext(DbContextOptions<VaccinationSiteContext> options) : base(options)
+    public VaccinationSiteContext(DbContextOptions<VaccinationSiteContext> options, DaprClient daprClient) : base(options)
     {
+        _daprClient = daprClient;
     }
 
     public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
@@ -41,7 +44,7 @@ public class VaccinationSiteContext : DbContext, IUnitOfWork
 
         foreach (var domainEvent in domainEvents)
         {
-            // TODO PUBSUB
+            await _daprClient.PublishEventAsync("pubsub", domainEvent.GetType().Name, domainEvent);
         }
         return true;
     }

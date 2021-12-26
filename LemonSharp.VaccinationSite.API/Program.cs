@@ -22,6 +22,8 @@ builder.Services.AddScoped<ISiteRepository, SiteRepository>();
 
 builder.Services.AddSingleton<ISiteQueries, SiteQueries>();
 
+builder.Services.AddDaprClient();
+
 var app = builder.Build();
 
 app.UseSwagger();
