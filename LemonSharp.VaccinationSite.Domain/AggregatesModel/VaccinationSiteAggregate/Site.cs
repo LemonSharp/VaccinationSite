@@ -45,7 +45,7 @@ public class Site : Entity, IAggregateRoot
 
     public void CreateAppointment(Guid userId, DateTime appointmentDate)
     {
-        var appointmentRange = AppointmentRanges.SingleOrDefault(x => x.Date == appointmentDate);
+        var appointmentRange = AppointmentRanges.SingleOrDefault(x => x.Date == appointmentDate.Date);
 
         // TODO 校验选的是过去的日子
         if (appointmentRange == null)
@@ -66,7 +66,7 @@ public class Site : Entity, IAggregateRoot
 
     public void CancelAppointment(Guid userId, DateTime appointmentDate)
     {
-        var appointmentRange = AppointmentRanges.SingleOrDefault(x => x.Date == appointmentDate);
+        var appointmentRange = AppointmentRanges.SingleOrDefault(x => x.Date == appointmentDate.Date);
 
         appointmentRange?.CancelAppointment();
 
