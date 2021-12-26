@@ -4,7 +4,7 @@ namespace LemonSharp.VaccinationSite.Query;
 
 public interface ISiteQueries
 {
-    Task<SiteListDTO[]> GetSiteList(SiteListRequestDTO request);
+    Task<SiteListDTO[]> GetSiteListAsync(SiteListRequestDTO request);
 
-    Task<SiteCapacityResponseDTO[]> GetSiteCapacityInfo(SiteCapacityRequestDTO request);
+    Task<SiteCapacityResponseDTO[]> GetSiteCapacityInfoAsync(SiteCapacityRequestDTO request);
 }

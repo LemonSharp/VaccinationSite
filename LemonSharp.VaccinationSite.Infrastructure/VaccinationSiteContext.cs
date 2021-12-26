@@ -39,5 +39,6 @@ public class VaccinationSiteContext : DbContext, IUnitOfWork
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new VaccinationSiteEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new AppointmentRangeEntityConfiguration());
     }
 }

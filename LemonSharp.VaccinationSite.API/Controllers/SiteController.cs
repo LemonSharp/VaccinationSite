@@ -39,12 +39,12 @@ public class SiteController : Controller
     [HttpGet]
     public Task<SiteListDTO[]> List([FromQuery]SiteListRequestDTO request)
     {
-        return _siteQueries.GetSiteList(request);
+        return _siteQueries.GetSiteListAsync(request);
     }
 
     [HttpGet]
     public Task<SiteCapacityResponseDTO[]> SiteCapacityInfo([FromQuery] SiteCapacityRequestDTO request)
     {
-        return _siteQueries.GetSiteCapacityInfo(request);
+        return _siteQueries.GetSiteCapacityInfoAsync(request);
     }
 }
