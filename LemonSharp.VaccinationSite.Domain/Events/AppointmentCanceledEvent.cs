@@ -3,6 +3,6 @@
 namespace LemonSharp.VaccinationSite.Domain.Events;
 
 public record AppointmentCanceledEvent(
-    long UserId,
+    Guid UserId,
     DateTime AppointmentDate
 ) : INotification;

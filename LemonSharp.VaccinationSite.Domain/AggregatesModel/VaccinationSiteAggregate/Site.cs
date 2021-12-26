@@ -43,7 +43,7 @@ public class Site : Entity, IAggregateRoot
         _appointmentRanges = new List<AppointmentRange>();
     }
 
-    public void CreateAppointment(long userId, DateTime appointmentDate)
+    public void CreateAppointment(Guid userId, DateTime appointmentDate)
     {
         var appointmentRange = AppointmentRanges.SingleOrDefault(x => x.Date == appointmentDate);
 
@@ -51,6 +51,7 @@ public class Site : Entity, IAggregateRoot
         if (appointmentRange == null)
         {
             appointmentRange = new AppointmentRange(appointmentDate, Capacity);
+            _appointmentRanges.Add(appointmentRange);
         }
 
         if (appointmentRange.IfAvailable())
@@ -63,7 +64,7 @@ public class Site : Entity, IAggregateRoot
         AddDomainEvent(new AppointmentCompletedEvent(userId, appointmentRange.Date, AddressName, AddressLongitude, AddressLatitude));
     }
 
-    public void CancelAppointment(long userId, DateTime appointmentDate)
+    public void CancelAppointment(Guid userId, DateTime appointmentDate)
     {
         var appointmentRange = AppointmentRanges.SingleOrDefault(x => x.Date == appointmentDate);
 

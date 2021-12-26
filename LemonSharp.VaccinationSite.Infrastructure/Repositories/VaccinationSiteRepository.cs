@@ -28,4 +28,9 @@ public class SiteRepository : ISiteRepository
 
         return site;
     }
+
+    public void Update(Site site)
+    {
+        _context.Entry(site).State = EntityState.Modified;
+    }
 }

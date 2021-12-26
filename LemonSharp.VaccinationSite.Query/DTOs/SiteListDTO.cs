@@ -1,12 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace LemonSharp.VaccinationSite.Query.DTOs;
 
-namespace LemonSharp.VaccinationSite.Application.DTOs;
-
-public class AddSiteRequestDTO
+public class SiteListDTO
 {
-    [Required]
+    public Guid SiteId { get; set; }
     public string SiteName { get; set; } = string.Empty;
-    [Required]
     public string AddressName { get; set; } = string.Empty;
     public double AddressLatitude { get; set; }
     public double AddressLongitude { get; set; }

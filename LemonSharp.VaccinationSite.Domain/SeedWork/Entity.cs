@@ -4,11 +4,16 @@ namespace LemonSharp.VaccinationSite.Domain.SeedWork
 {
     public abstract class Entity
     {
-        public Guid Id { get; protected set; } = Guid.NewGuid();
+        public Guid Id { get; protected set; }
 
         private List<INotification>? _domainEvents;
         public IReadOnlyCollection<INotification>? DomainEvents => _domainEvents?.AsReadOnly();
 
+        public bool IsTransient()
+        {
+            return Id == default;
+        }
+        
         public void AddDomainEvent(INotification eventItem)
         {
             _domainEvents ??= new List<INotification>();

@@ -22,7 +22,15 @@ public class VaccinationSiteContext : DbContext, IUnitOfWork
 
     public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
     {
-        await Database.GetService<IMediator>().DispatchDomainEventsAsync(this);
+        foreach (var entry in ChangeTracker.Entries())
+        {
+            if (entry.Entity is Entity entity && entity.IsTransient())
+            {
+                entry.State = EntityState.Added;
+            }
+        }
+        
+        await _mediator.DispatchDomainEventsAsync(this);
         var result = await base.SaveChangesAsync(cancellationToken);
         return true;
     }
