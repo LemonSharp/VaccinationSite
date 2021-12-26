@@ -36,11 +36,18 @@ ORDER BY ((AddressLatitude-@AddressLatitude)*(AddressLatitude-@AddressLatitude) 
         await using var conn = new SqlConnection(_connStr);
         return (await conn.QueryAsync<SiteListDTO>(sql, request)).ToArray();
     }
+    
+    public async Task<SiteListDTO> GetSiteInfoById(Guid siteId)
+    {
+        const string sql = "SELECT Id AS SiteId, * FROM [dbo].[VaccinationSites] WHERE Id = @siteId";
+        await using var conn = new SqlConnection(_connStr);
+        return await conn.QueryFirstOrDefaultAsync<SiteListDTO>(sql, new { siteId });
+    }
 
     public async Task<SiteCapacityResponseDTO[]> GetSiteCapacityInfo(SiteCapacityRequestDTO request)
     {
         var sql = @"
-SELECT [Date], [Capacity], [Available] FROM dto.AppointmentRange
+SELECT [Date], [Capacity], [Available] FROM [dbo].[AppointmentRange]
 WHERE SiteId = @SiteId AND [Date] >= @BeginDate AND [Date] <= @EndDate";
         await using var conn = new SqlConnection(_connStr);
         return (await conn.QueryAsync<SiteCapacityResponseDTO>(sql, request)).ToArray();

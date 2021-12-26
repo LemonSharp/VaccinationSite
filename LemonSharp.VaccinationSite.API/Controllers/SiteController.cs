@@ -41,6 +41,12 @@ public class SiteController : Controller
     {
         return _siteQueries.GetSiteList(request);
     }
+    
+    [HttpGet("{siteId}")]
+    public Task<SiteListDTO> Details(Guid siteId)
+    {
+        return _siteQueries.GetSiteInfoById(siteId);
+    }
 
     [HttpGet]
     public Task<SiteCapacityResponseDTO[]> SiteCapacityInfo([FromQuery] SiteCapacityRequestDTO request)
